@@ -14,7 +14,7 @@ addons:
   apt:
     packages:
       - docker-ce
-      - poppler-utils
+      - python3-dev
 
 env:
   global:
