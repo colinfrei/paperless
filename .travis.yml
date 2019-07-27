@@ -17,6 +17,7 @@ addons:
 
 env:
   global:
+    - DOCKER_PLATFORMS="linux/amd64,linux/arm/v6,linux/arm64/v8"
     - BUILDKIT_HOST=tcp://0.0.0.0:1234
     - DOCKER_CLI_EXPERIMENTAL=enabled
 
@@ -42,6 +43,10 @@ matrix:
             - docker build --tag=the-paperless-project/paperless .
           after_success:
             - true
+
+before_install: >
+  ./ci/setup.sh \
+    "${DOCKER_PLATFORMS}"
 
 install:
     - pip install --upgrade pip pipenv sphinx
