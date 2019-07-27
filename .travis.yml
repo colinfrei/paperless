@@ -47,6 +47,14 @@ matrix:
 before_install: >
   ./ci/setup.sh \
     "${DOCKER_PLATFORMS}"
+    
+jobs:
+  include:
+    - script: >
+        ./.travis/build.sh \
+          "${DOCKER_IMAGE}" \
+          "${DOCKER_COMMIT}" \
+          "${DOCKER_PLATFORMS}"
 
 install:
     - pip install --upgrade pip pipenv sphinx
@@ -75,3 +83,12 @@ deploy:
     on:
       branch: master
       condition: '"${BUILD_DOCKER}" = 1'
+  - provider: script
+    script: >-
+      bash ./ci/push.sh
+      "${DOCKER_IMAGE}"
+      "${DOCKER_COMMIT}"
+      "${DOCKER_TAG}"
+      "${DOCKER_PLATFORMS}"
+    on:
+      tags: true
