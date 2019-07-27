@@ -12,6 +12,7 @@ should work) that has the following software installed:
 * `Imagemagick`_ version 6.7.5 or higher
 * `unpaper`_
 * `libpoppler-cpp-dev`_ PDF rendering library
+* `optipng`_
 
 .. _Python3: https://python.org/
 .. _GNU Privacy Guard: https://gnupg.org
@@ -19,6 +20,7 @@ should work) that has the following software installed:
 .. _Imagemagick: http://imagemagick.org/
 .. _unpaper: https://www.flameeyes.eu/projects/unpaper
 .. _libpoppler-cpp-dev: https://poppler.freedesktop.org/
+.. _optipng: http://optipng.sourceforge.net/
 
 Notably, you should confirm how you access your Python3 installation.  Many
 Linux distributions will install Python3 in parallel to Python2, using the
@@ -50,7 +52,7 @@ with PDFs.  Often this is the case with Apple systems using HomeBrew, but other
 Linuxes have been a problem as well.  The solution appears to be to install
 ghostscript as well as ImageMagick:
 
-.. _run into problems: https://github.com/danielquinn/paperless/issues/25
+.. _run into problems: https://github.com/the-paperless-project/paperless/issues/25
 
 .. code:: bash
 
@@ -90,7 +92,7 @@ enter it, and install the requirements using the ``requirements.txt`` file:
     $ . /path/to/arbitrary/directory/bin/activate
     $ pip install  --requirement /path/to/paperless/requirements.txt
 
-Now you're ready to go.  Just remember to enter (activate) your virtualenv 
+Now you're ready to go.  Just remember to enter (activate) your virtualenv
 whenever you want to use Paperless.
 
 

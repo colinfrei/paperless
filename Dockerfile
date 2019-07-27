@@ -1,27 +1,47 @@
 FROM alpine:3.8
 
-LABEL maintainer="The Paperless Project https://github.com/danielquinn/paperless" \
+LABEL maintainer="The Paperless Project https://github.com/the-paperless-project/paperless" \
       contributors="Guy Addadi <addadi@gmail.com>, Pit Kleyersburg <pitkley@googlemail.com>, \
         Sven Fischer <git-dev@linux4tw.de>"
 
-# Copy requirements file and init script
-COPY requirements.txt /usr/src/paperless/
+# Copy Pipfiles file and init script
+COPY Pipfile* /usr/src/paperless/
 COPY scripts/docker-entrypoint.sh /sbin/docker-entrypoint.sh
 
 # Set export and consumption directories
 ENV PAPERLESS_EXPORT_DIR=/export \
     PAPERLESS_CONSUMPTION_DIR=/consume
 
-
-RUN apk update --no-cache && apk add python3 gnupg libmagic libpq bash shadow curl \
-        sudo poppler tesseract-ocr imagemagick ghostscript unpaper optipng && \
-    apk add --virtual .build-dependencies \
-        python3-dev poppler-dev postgresql-dev gcc g++ musl-dev zlib-dev jpeg-dev && \
+RUN apk add --no-cache \
+      bash \
+      curl \
+      ghostscript \
+      gnupg \
+      imagemagick \
+      libmagic \
+      libpq \
+      optipng \
+      poppler \
+      python3 \
+      shadow \
+      sudo \
+      tesseract-ocr \
+      unpaper && \
+    apk add --no-cache --virtual .build-dependencies \
+      g++ \
+      gcc \
+      jpeg-dev \
+      musl-dev \
+      poppler-dev \
+      postgresql-dev \
+      python3-dev \
+      zlib-dev && \
 # Install python dependencies
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     cd /usr/src/paperless && \
-    pip3 install --no-cache-dir -r requirements.txt && \
+    pip3 install --upgrade pip pipenv && \
+    pipenv install --system --deploy && \
 # Remove build dependencies
     apk del .build-dependencies && \
 # Create the consumption directory

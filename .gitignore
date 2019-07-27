@@ -66,6 +66,7 @@ media/overrides.js
 
 # Sqlite database
 db.sqlite3
+db.sqlite3-journal
 
 # PyCharm
 .idea
@@ -81,4 +82,4 @@ scripts/import-for-development
 scripts/nuke
 
 # Static files collected by the collectstatic command
-static/
+./static/
