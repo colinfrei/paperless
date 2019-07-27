@@ -14,6 +14,7 @@ addons:
   apt:
     packages:
       - docker-ce
+      - poppler-utils
 
 env:
   global:
