@@ -4,7 +4,22 @@ before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -qq libpoppler-cpp-dev unpaper tesseract-ocr
 
-sudo: false
+sudo: true
+dist: xenial
+
+services:
+  - docker
+  
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+env:
+  global:
+    - BUILDKIT_HOST=tcp://0.0.0.0:1234
+    - DOCKER_CLI_EXPERIMENTAL=enabled
+
 
 matrix:
     include:
