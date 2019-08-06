@@ -30,8 +30,8 @@ build_images() {
 
     # Build a platform spceific Docker image
     # and load it back to the local Docker.
-		buildctl build --help
-    buildctl build --frontend dockerfile.v0 \
+    buildctl build --progress plain \
+		  --frontend dockerfile.v0 \
       --frontend-opt platform="${platform}" \
       --local dockerfile=. \
       --local context=. \
