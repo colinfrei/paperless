@@ -48,7 +48,7 @@ matrix:
 jobs:
   include:
     - script: >
-        ./.travis/build.sh \
+        ./ci/build.sh \
           "${DOCKER_IMAGE}" \
           "${DOCKER_COMMIT}" \
           "${DOCKER_PLATFORMS}"
