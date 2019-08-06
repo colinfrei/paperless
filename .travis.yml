@@ -55,7 +55,7 @@ jobs:
 
 install:
     - pip install --upgrade pip pipenv sphinx
-    - pipenv lock -vv -r > requirements.txt
+    - pipenv lock --verbose -r > requirements.txt
     - pip install -r requirements.txt
 
 script:
