@@ -2,7 +2,7 @@ language: python
 
 before_install:
 - sudo apt-get update -qq
-- sudo apt-get install build-essential libpoppler-cpp-dev pkg-config python-dev
+- sudo apt-get install -qq build-essential libpoppler-cpp-dev pkg-config python-dev
 - ./ci/setup.sh "${DOCKER_PLATFORMS}"
 
 sudo: true
