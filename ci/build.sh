@@ -32,10 +32,10 @@ build_images() {
     # and load it back to the local Docker.
     buildctl build --progress plain \
 		  --frontend dockerfile.v0 \
-      --frontend-opt platform="${platform}" \
+      --opt platform="${platform}" \
       --local dockerfile=. \
       --local context=. \
-      --exporter docker \
+      --output type=docker \
       --exporter-opt name="${image}:${platform_tag}" \
       --exporter-opt output=fifo.tar \
       & docker load < fifo.tar & wait
