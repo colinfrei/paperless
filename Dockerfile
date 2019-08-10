@@ -44,6 +44,7 @@ RUN apk add --no-cache \
     pip3 install --upgrade pip pipenv && \
 		echo 'dockerfile45' && \
     pipenv install --system --deploy && \
+		echo 'dockerfile47' && \
 # Remove build dependencies
     apk del .build-dependencies && \
 # Create the consumption directory
