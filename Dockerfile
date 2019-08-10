@@ -40,7 +40,9 @@ RUN apk add --no-cache \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     cd /usr/src/paperless && \
+		echo 'dockerfile43' && \
     pip3 install --upgrade pip pipenv && \
+		echo 'dockerfile45' && \
     pipenv install --system --deploy && \
 # Remove build dependencies
     apk del .build-dependencies && \
