@@ -35,9 +35,7 @@ build_images() {
       --opt platform="${platform}" \
       --local dockerfile=. \
       --local context=. \
-      --exporter docker \
-      --exporter-opt name="${image}:${platform_tag}" \
-      --exporter-opt output=fifo.tar \
+			--output type=docker,name="${image}:${image}:${platform_tag}",output=fifo.tar
 			& docker load < fifo.tar & wait
 
   done
